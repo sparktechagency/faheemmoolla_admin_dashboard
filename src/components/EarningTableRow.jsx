@@ -24,7 +24,6 @@ const EarningTableRow = ({ item, list }) => {
   };
 
 
-  // console.log(data?.data)
   return (
     <>
       {/* Table Row */}
@@ -170,6 +169,13 @@ const EarningTableRow = ({ item, list }) => {
                               </strong>
                               <p className="text-gray-700">Visa Card</p>
                             </div>
+                            <div className="flex items-center gap-2">
+                              <strong className="text-black">
+                                Order status:{" "}
+                              </strong>
+                              <p className="text-gray-700">{data?.data?.orderStatus}</p>
+                            </div>
+
 
                             <div className="flex items-center gap-2">
                               <strong className="text-black">
