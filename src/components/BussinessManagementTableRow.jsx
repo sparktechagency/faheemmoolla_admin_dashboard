@@ -86,7 +86,7 @@ const BussinessManagementTableRow = ({ item, list }) => {
       <div className="px-4 py-3 text-center">{item?.location || "Dhaka"}</div>
       <div className="px-4 py-3 text-center">{item?.userId?.phone}</div>
       <div className="px-4 py-3 text-center">{item?.totalOrders}</div>
-      <div className="py-3 text-center">{item.revenue}</div>
+      <div className="py-3 text-center">{item.revenue}%</div>
       <div className="col-span-2 py-2 border border-green-500 rounded">
         <div className="flex items-center justify-between gap-2 rounded">
           <div className="w-1/2 px-1">

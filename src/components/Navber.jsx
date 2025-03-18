@@ -6,7 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import { useLocation, useNavigate } from "react-router-dom";
 import massageNotify from "../assets/notification.png";
 import { useProfileQuery } from "../features/profile/profileApi";
-// import Avator from "../assets/avator.png";
+import Avator from "../assets/avator2.png";
 import {
   useGetNotificationQuery,
   useReadNotificationMutation,
@@ -170,8 +170,8 @@ const NotificationPopup = () => {
             Hello, <b>{profile?.data?.name}</b>
           </span>
           <Avatar
-            src={profile?.data?.image ? `${baseURL}${profile?.data?.image}` : ""}
-            size={40}
+            src={profile?.data?.image ? `${baseURL}${profile?.data?.image}` : `${Avator}`}
+            size={30}
           />
         </div>
 

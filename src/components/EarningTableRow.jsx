@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useGetEarningsDetailQuery } from "../features/earning/earningApi";
 
 const EarningTableRow = ({ item, list }) => {
+  console.log(item)
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [itemId, setItemId] = useState(null);
 
@@ -23,7 +24,7 @@ const EarningTableRow = ({ item, list }) => {
   };
 
 
-  console.log(data?.data)
+  // console.log(data?.data)
   return (
     <>
       {/* Table Row */}
@@ -31,7 +32,7 @@ const EarningTableRow = ({ item, list }) => {
         <div className="py-3 text-center">{list}</div>
         <div className="px-3 py-3 text-center">{item?.orderNumber}</div>
         <div className="px-3 py-3 text-center">{item?.userId?.name}</div>
-        <div className="px-4 py-3 text-center">{item.shopId.shopName}</div>
+        <div className="px-4 py-3 text-center">{item?.shopId?.shopName}</div>
         <div className="px-4 py-3 text-center">
           {item.products.map((product) => product?.productName).join(", ")}
         </div>

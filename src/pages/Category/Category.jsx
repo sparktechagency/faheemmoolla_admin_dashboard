@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MdTune } from "react-icons/md";
-import { Select, ConfigProvider, Spin } from "antd";
+import { Select, ConfigProvider, Spin, message } from "antd";
 import { motion, AnimatePresence } from "framer-motion";
 import CustomLoading from "../../components/CustomLoading";
 import SingleMeal from "../../components/meal/SingleMeal";
@@ -113,7 +113,7 @@ const Category = () => {
 
       try {
         const response = await createCategory(formData).unwrap();
-        console.log(response);
+        message.success("Category created successful")
         // Close modal and reset form
         setIsModalOpen(false);
         resetForm();
