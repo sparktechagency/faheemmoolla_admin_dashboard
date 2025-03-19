@@ -1,11 +1,9 @@
-import { lazy, Suspense } from "react";
-import { useAllCountAnalysisQuery } from "../../features/dashboard/dashboardApi"
-
+import { lazy, Suspense, useEffect } from "react";
+import { useAllCountAnalysisQuery } from "../../features/dashboard/dashboardApi";
+import { useNavigate } from "react-router-dom";
 
 const AnalysisCard = lazy(() => import("../../components/AnalysisCard"));
-const CustomerMap = lazy(() =>
-  import("../../components/dashboard/CustomerMap")
-);
+const CustomerMap = lazy(() => import("../../components/dashboard/CustomerMap"));
 const OrderChart = lazy(() => import("../../components/dashboard/OrderChart"));
 const PieCharts = lazy(() => import("../../components/dashboard/PieChart"));
 const Revenue = lazy(() => import("../../components/dashboard/Revenue"));
@@ -17,7 +15,6 @@ import shop_order from "../../assets/icons/shop_order.png";
 import OrderData from "../../assets/icons/orderData.png";
 import down from "../../assets/icons/down.png";
 import { Skeleton, Spin } from "antd";
-import CustomLoading from "../../components/CustomLoading";
 
 const Dashboard = () => {
   const {
@@ -25,43 +22,43 @@ const Dashboard = () => {
     error: queryError,
     isLoading: queryLoading,
     isError,
-    status
+    status,
   } = useAllCountAnalysisQuery(undefined, {
     refetchOnFocus: true,
     refetchOnReconnect: true,
   });
 
+  const navigate = useNavigate();
 
-  if (status === "rejected" && isError && queryError)
-    return <div className="flex flex-col gap-5 text-base items-center justify-center h-[300px]">
-      <p className="text-center text-red-500">{queryError.data.message ? queryError.data.message +  " "+"please logOut then Login" :""} </p>
-  <p className="text-center text-red-500">Server Error. Please try again later.</p>
-</div>
-
- 
+  useEffect(() => {
+    if (status === "rejected" && isError && queryError) {
+      localStorage.removeItem("adminToken");
+      navigate("/auth/login");
+    }
+  }, [status, isError, queryError, navigate]);
 
   const analysisCards = [
     {
-      value: queryLoading ? <div className="text-center"><Spin size="small" /></div>: allShop?.data?.totalFoodSell,
+      value: queryLoading ? <Spin size="small" /> : allShop?.data?.totalFoodSell,
       title: "Total Food Sell",
       icon: Icon_Order,
       percentage: "4% (30 days)",
       orderData: OrderData,
     },
     {
-      value:  queryLoading ? <div className="text-center"><Spin size="small" /></div>: `$${allShop?.data?.totalRevenue?.toFixed(2)}`,
+      value: queryLoading ? <Spin size="small" /> : `$${allShop?.data?.totalRevenue?.toFixed(2)}`,
       title: "Total Revenue",
       icon: revenue,
       percentage: "12% (30 days)",
       orderData: down,
     },
     {
-      value:  queryLoading ? <div className="text-center"><Spin size="small" /></div>: allShop?.data?.totalUser || 0,
+      value: queryLoading ? <Spin size="small" /> : allShop?.data?.totalUser || 0,
       title: "Total User",
       icon: shop_order,
     },
     {
-      value:  queryLoading ? <div className="text-center"><Spin size="small" /></div>: allShop?.data?.totalShop || 0,
+      value: queryLoading ? <Spin size="small" /> : allShop?.data?.totalShop || 0,
       title: "Total Shop",
       icon: Items_Delivered,
     },
@@ -69,10 +66,10 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col gap-10 py-10">
-      {/* Analysis Cards with Skeleton Loading */}
+      {/* Analysis Cards */}
       <div className="flex items-center gap-12">
         {analysisCards.map((card, index) => (
-          <Suspense key={index} fallback={ <Skeleton active className="w-full h-[300px] rounded-lg bg-gray-200" />}>
+          <Suspense key={index} fallback={<Skeleton active className="w-full h-[300px] rounded-lg bg-gray-200" />}>
             <AnalysisCard
               value={card.value}
               title={card.title}
@@ -84,17 +81,24 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* PieCharts and OrderChart with Skeleton Loading */}
+      {/* Charts Section */}
       <div className="flex items-center justify-between gap-10">
-        
+        <Suspense fallback={<Skeleton active />}>
           <PieCharts />
+        </Suspense>
+        <Suspense fallback={<Skeleton active />}>
           <OrderChart />
+        </Suspense>
       </div>
 
-      {/* Revenue and CustomerMap with Skeleton Loading */}
+      {/* Revenue and CustomerMap */}
       <div className="flex items-center justify-between gap-10">
+        <Suspense fallback={<Skeleton active />}>
           <Revenue />
+        </Suspense>
+        <Suspense fallback={<Skeleton active />}>
           <CustomerMap />
+        </Suspense>
       </div>
     </div>
   );
