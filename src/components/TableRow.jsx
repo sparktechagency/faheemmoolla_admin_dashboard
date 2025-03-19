@@ -10,7 +10,7 @@ import { baseURL } from "../utils/BaseURL";
 import Loading from "./Loading";
 
 const OrderRow = ({ item, list, location }) => {
-  console.log(item)
+
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [detailsId, setDetailsId] = useState(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -24,7 +24,6 @@ const OrderRow = ({ item, list, location }) => {
   });
 
 
-  // console.log(order?.data)
   const { data: earningDetails, isLoading: earningLoadingdetails } =
   useGetEarningsDetailQuery(detailsId, {
     skip: !detailsId || location !== "/earning", 

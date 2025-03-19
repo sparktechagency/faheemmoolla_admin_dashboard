@@ -38,6 +38,7 @@ const Category = () => {
     data: category,
     isLoading: categoryLoading,
     error: categiryError,
+    refetch
   } = useGetCategoryQuery(dropdown , { refetchOnFocus: true, refetchOnReconnect: true });
 
   const [createCategory, { isLoading }] = useCreateCategoryMutation(undefined , { refetchOnFocus: true, refetchOnReconnect: true });
@@ -108,17 +109,15 @@ const Category = () => {
         "data",
         JSON.stringify({ name: categoryName, status: "active" })
       );
-      // Correctly append the file to FormData
       formData.append("image", selectedFile);
 
       try {
         const response = await createCategory(formData).unwrap();
-        message.success("Category created successful")
-        // Close modal and reset form
-        setIsModalOpen(false);
         resetForm();
+        setIsModalOpen(false);
+        await refetch();
+        message.success("Category created successful")
       } catch (error) {
-        console.log(error);
 
         // Check for duplicate key error
         if (error?.data?.message?.includes("duplicate key error")) {

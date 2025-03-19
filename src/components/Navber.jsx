@@ -30,18 +30,12 @@ const NotificationPopup = () => {
     refetchOnReconnect: true,
   });
 
-
-  const [readNotification , {isLoading:updateLoading}] = useReadNotificationMutation();
-
-
-  
-
+  const [readNotification, {isLoading:updateLoading } ] = useReadNotificationMutation();
 
   useEffect(() => {
     socketRef.current = io(baseURL);
 
     socketRef.current.on("connect", () => {
-      // console.log("Socket connected:", socketRef.current.id);
     });
 
     const handleNewNotification = (notification) => {
@@ -109,6 +103,12 @@ const NotificationPopup = () => {
     } catch (error) {
       // console.error("Error updating notification:", error);
     }
+  };
+
+  // Function to handle See Details button click
+  const handleSeeDetailsClick = () => {
+    setVisible(false); // Close the modal
+    navigate("/settings/notification"); // Navigate to notification settings
   };
 
   const formatTime = (timestamp) => {
@@ -202,9 +202,9 @@ const NotificationPopup = () => {
               <div className="overflow-y-auto cursor-pointer max-h-96 custom-scrollbar">
                 {loading || updateLoading ? (
                   <div className="flex justify-center py-4">
-                    <Spin size="large" />
+                    <Spin size="small" />
                   </div>
-                ) : notifications.length === 0 ? (
+                ) : notifications?.data?.result.length === 0 ? (
                   <div className="text-center text-gray-500">
                     <div className="flex justify-center">
                       <img
@@ -221,6 +221,7 @@ const NotificationPopup = () => {
                       Your notifications will appear on this page.
                     </p>
                     <Button
+                      onClick={handleSeeDetailsClick}
                       type="primary"
                       className="w-full"
                       size="large"

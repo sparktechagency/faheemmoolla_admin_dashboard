@@ -19,7 +19,6 @@ export default function LoginPage() {
       const response = await Login(values).unwrap();
       saveToken(response?.data?.token);
       localStorage.setItem("loginId", response?.data?.user?._id);
-      // console.log(response.data.user._id)
       route("/");
     } catch (error) {
       console.error("Feild login, Please try again!!:", error);

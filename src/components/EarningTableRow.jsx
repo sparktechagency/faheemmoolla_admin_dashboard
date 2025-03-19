@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useGetEarningsDetailQuery } from "../features/earning/earningApi";
 
 const EarningTableRow = ({ item, list }) => {
-  console.log(item)
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [itemId, setItemId] = useState(null);
 
@@ -33,13 +32,13 @@ const EarningTableRow = ({ item, list }) => {
         <div className="px-3 py-3 text-center">{item?.userId?.name}</div>
         <div className="px-4 py-3 text-center">{item?.shopId?.shopName}</div>
         <div className="px-4 py-3 text-center">
-          {item.products.map((product) => product?.productName).join(", ")}
+          {item?.products?.map((product) => product?.productName).join(", ")}
         </div>
         <div className="px-4 py-3 text-center">
-          {item.products.map((product) => product?.price).join(", ")}
+          ${item?.totalAmount}
         </div>
-        <div className="px-4 py-3 text-center">{"Dhaka"}</div>
-        <div className="px-4 py-3 text-center">{item?.adminRevenue}</div>
+        <div className="px-4 py-3 text-center">${item?.adminRevenue}</div>
+        <div className="px-4 py-3 text-center">{item?.revenue}%</div>
         <div className="px-4 py-3 text-center">
           {formatDate(item.createdAt)}
         </div>
@@ -160,14 +159,14 @@ const EarningTableRow = ({ item, list }) => {
                               <strong className="text-black">
                                 Revenue Amount:
                               </strong>
-                              <p className="text-gray-700">{data?.data?.shopId?.revenue}%</p>
+                              <p className="text-gray-700">{data?.data?.revenue}%</p>
                             </div>
 
                             <div className="flex items-center gap-2">
                               <strong className="text-black">
                                 Payment By:{" "}
                               </strong>
-                              <p className="text-gray-700">Visa Card</p>
+                              <p className="text-gray-700">{data?.data?.paymentMethod}</p>
                             </div>
                             <div className="flex items-center gap-2">
                               <strong className="text-black">
@@ -229,7 +228,7 @@ const EarningTableRow = ({ item, list }) => {
                             <strong className="text-black">
                               Payment Received By:
                             </strong>
-                            <p className="text-gray-700">Visa Card</p>
+                            <p className="text-gray-700">{data?.data?.paymentMethod}</p>
                           </div>
                         </div>
                       </section>

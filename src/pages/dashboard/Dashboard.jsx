@@ -24,15 +24,20 @@ const Dashboard = () => {
     data: allShop,
     error: queryError,
     isLoading: queryLoading,
+    isError,
+    status
   } = useAllCountAnalysisQuery(undefined, {
     refetchOnFocus: true,
     refetchOnReconnect: true,
   });
 
-  console.log(allShop?.data)
 
-  if (queryError)
-    return <p className="text-red-500">Error: {queryError?.message}</p>;
+  if (status === "rejected" && isError && queryError)
+    return <div className="flex flex-col gap-5 text-base items-center justify-center h-[300px]">
+      <p className="text-center text-red-500">{queryError.data.message ? queryError.data.message +  " "+"please logOut then Login" :""} </p>
+  <p className="text-center text-red-500">Server Error. Please try again later.</p>
+</div>
+
  
 
   const analysisCards = [

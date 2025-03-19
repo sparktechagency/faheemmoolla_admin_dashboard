@@ -47,7 +47,7 @@ const OfferReviewTable = ({ columns }) => {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-4 py-2 text-white transition-colors rounded-lg shadow-md bg-primary hover:bg-primary disabled:bg-gray-400"
+            className="px-4 py-2 text-white transition-colors rounded-lg shadow-md bg-primary hover:bg-primary disabled:bg-primary"
           >
             &lt; 
           </button>
@@ -57,7 +57,7 @@ const OfferReviewTable = ({ columns }) => {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="px-4 py-2 text-white transition-colors rounded-lg shadow-md bg-primary hover:bg-primary disabled:bg-gray-400"
+            className="px-4 py-2 text-white transition-colors rounded-lg shadow-md bg-primary hover:bg-primary disabled:bg-primary"
           >
            &gt;
           </button>

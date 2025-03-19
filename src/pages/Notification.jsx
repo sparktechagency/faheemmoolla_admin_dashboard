@@ -37,7 +37,6 @@ const NotificationPopup = () => {
     socketRef.current = io(baseURL);
 
     socketRef.current.on("connect", () => {
-      console.log("Socket connected:", socketRef.current.id);
     });
 
     const handleNewNotification = (notification) => {
@@ -53,7 +52,7 @@ const NotificationPopup = () => {
         socketRef.current.disconnect();
       }
     };
-  }, []);
+  }, [refetch]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -136,6 +135,7 @@ const NotificationPopup = () => {
     }
   };
 
+
   return (
     <div className="flex items-center justify-between pt-10">
      
@@ -155,9 +155,9 @@ const NotificationPopup = () => {
               <div className="w-full cursor-pointer">
                 {loading || updateLoading ? (
                   <div className="flex justify-center py-4">
-                    <Spin size="large" />
+                    <Spin size="default" />
                   </div>
-                ) : notifications.length === 0 ? (
+                ) : notifications?.data?.result.length === 0 ? (
                   <div className="text-center text-gray-500">
                     <div className="flex justify-center">
                       <img
@@ -173,17 +173,6 @@ const NotificationPopup = () => {
                     <p className="pb-[5px]">
                       Your notifications will appear on this page.
                     </p>
-                    <Button
-                      type="primary"
-                      className="w-full"
-                      size="large"
-                      style={{
-                        backgroundColor: "#C68C4E",
-                        borderColor: "#C68C4E",
-                      }}
-                    >
-                      See details
-                    </Button>
                   </div>
                 ) : (
                   notifications?.data?.result.map((notif, index) => (

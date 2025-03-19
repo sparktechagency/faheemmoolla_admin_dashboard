@@ -205,3 +205,8 @@ input[type="number"] {
   color: #464255;
   font-weight: bold;
 }
+
+
+.custom-editor {
+  height: 400px; /* Adjust height as needed */
+}

@@ -15,8 +15,6 @@ const Table = ({ columns }) => {
 
   const { data: users, isLoading } = useGetUserManagementQuery(currentPage, { refetchOnFocus: true, refetchOnReconnect: true });
 
-  console.log(users);
-
   const totalPage = users?.pagination?.totalPage || 1;
 
   useEffect(() => {

@@ -77,10 +77,7 @@ const SingleMeal = ({ items }) => {
   const handleEdit = async () => {
     if (!validateForm()) return;
 
-    console.log(selectedFile);
-
     const formData = new FormData();
-    console.log(categoryData);
     formData.append("data", JSON.stringify(categoryData));
 
     if (selectedFile) formData.append("image", selectedFile);

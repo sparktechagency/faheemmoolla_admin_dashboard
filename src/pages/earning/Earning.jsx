@@ -9,8 +9,8 @@ const columns = [
   "Shop Name",
   "Order Item",
   "Order Price",
-  "Order Location",
-  "Revenue",
+  "Admin Revenue",
+  "Percentage",
   "Order Date",
   "Action",
 ];

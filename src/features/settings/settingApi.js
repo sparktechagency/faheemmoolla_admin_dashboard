@@ -10,10 +10,19 @@ export const offerApi = baseApi.injectEndpoints({
           body: data,
         }),
       }),
+      updateSettings: builder.mutation({
+        query: (data) => ({
+            url: "/setting",
+            method: "PUT",
+            body: data,
+        }),
+    }),
+
     }), 
   });
   
 
   export const {
-        useChangePasswordMutation
+        useChangePasswordMutation,
+        useUpdateSettingsMutation
   } = offerApi;
