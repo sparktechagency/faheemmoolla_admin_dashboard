@@ -4,7 +4,11 @@ import { useBussinessAllShopQuery } from "../features/bussinessManagement/bussin
 import CustomLoading from "./CustomLoading";
 import { useLocation, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
+import io from "socket.io-client";
+import { baseURL } from "../utils/BaseURL";
 
+// Initialize socket connection - replace with your actual backend URL
+const socket = io(baseURL);
 const BussinessManagementTable = ({ columns }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -14,7 +18,7 @@ const BussinessManagementTable = ({ columns }) => {
   const [currentPage, setCurrentPage] = useState(pageParam);
   const [isFetching, setIsFetching] = useState(false);
 
-  const { data, isLoading } = useBussinessAllShopQuery(currentPage);
+  const { data, isLoading, refetch } = useBussinessAllShopQuery(currentPage);
 
   const totalPage = data?.pagination?.totalPage || 1;
 
@@ -43,7 +47,16 @@ const BussinessManagementTable = ({ columns }) => {
 
     return [1, "...", currentPage, "...", totalPage];
   };
-
+// Socket event listeners for real-time updates
+useEffect(() => {
+  // Listen for shop updates (create, update, delete)
+  socket.on( `notification::${localStorage.getItem("adminLoginId")}`, (data) => {
+    refetch();
+  });
+  return () => {
+    socket.off(`notification::${localStorage.getItem("adminLoginId")}`);
+  };
+}, [refetch]);
   return (
     <div className="overflow-x-auto">
       <div className="min-w-[1200px] w-full bg-transparent rounded-lg shadow-md space-y-3">
