@@ -42,12 +42,12 @@ const NotificationPopup = () => {
       refetch();
     };
 
-    socketRef.current.on(`notification::${localStorage.getItem("loginId")}`, handleNewNotification);
+    socketRef.current.on(`notification::${localStorage.getItem("adminLoginId")}`, handleNewNotification);
 
     return () => {
       if (socketRef.current) {
         socketRef.current.off("connect");
-        socketRef.current.off(`notification::${localStorage.getItem("loginId")}`, handleNewNotification);
+        socketRef.current.off(`notification::${localStorage.getItem("adminLoginId")}`, handleNewNotification);
         socketRef.current.disconnect();
       }
     };

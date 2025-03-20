@@ -25,6 +25,7 @@ const EarningTable = ({ columns }) => {
 
     const timer = setTimeout(() => setIsFetching(false), 300);
     return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, navigate]);
 
   // Filter orders based on search value
@@ -45,6 +46,7 @@ const EarningTable = ({ columns }) => {
   }, [earningData, searchValue]);
 
   // Debounce search handling
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSearch = useCallback(
     debounce((value) => {
       queryParams.set("search", value);
@@ -99,7 +101,7 @@ const EarningTable = ({ columns }) => {
       
       <div className="min-w-[1200px] w-full bg-transparent rounded-lg shadow-md space-y-3">
         {/* Header */}
-        <div className="grid grid-cols-10 text-center border-2 border-opacity-50 rounded-lg bg-surfacePrimary border-primary">
+        <div className="grid grid-cols-11 text-center border-2 border-opacity-50 rounded-lg bg-surfacePrimary border-primary">
           {columns.map((column, index) => (
             <div key={index} className="py-3 text-center">{column}</div>
           ))}

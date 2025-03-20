@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGetEarningsDetailQuery } from "../features/earning/earningApi";
+import { baseURL } from "../utils/BaseURL";
 
 const EarningTableRow = ({ item, list }) => {
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
@@ -23,16 +24,22 @@ const EarningTableRow = ({ item, list }) => {
   };
 
 
+  console.log(data?.data?.products)
+
+
   return (
     <>
       {/* Table Row */}
-      <div className="grid grid-cols-10 pr-1 my-3 text-sm bg-gray-100 rounded-lg whitespace-nowrap">
+      <div className="grid grid-cols-11 pr-1 my-3 text-sm bg-gray-100 rounded-lg whitespace-nowrap">
         <div className="py-3 text-center">{list}</div>
         <div className="px-3 py-3 text-center">{item?.orderNumber}</div>
         <div className="px-3 py-3 text-center">{item?.userId?.name}</div>
         <div className="px-4 py-3 text-center">{item?.shopId?.shopName}</div>
         <div className="px-4 py-3 text-center">
-          {item?.products?.map((product) => product?.productName).join(", ")}
+          {item?.products?.length}
+        </div>
+        <div className="px-4 py-3 text-center">
+          {item?.products?.reduce((sum, product) => sum + product.quantity, 0)}
         </div>
         <div className="px-4 py-3 text-center">
           ${item?.totalAmount}
@@ -113,79 +120,27 @@ const EarningTableRow = ({ item, list }) => {
                     <section className="flex justify-center gap-5 item-center">
                       <section className="w-full p-2 border rounded-md border-primary">
                         <div className="">
-                          <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                              <strong className="text-black">
-                                User Name::
-                              </strong>
-                              <p className="text-gray-700">
-                                {data?.data?.userId?.name}
-                              </p>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <strong className="text-black">Item Name:</strong>
-                              {data?.data?.products?.map((product, index) => (
-                                <p key={index} className="text-gray-700">
-                                  {product?.productName}
-                                </p>
-                              ))}
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <strong className="text-black">
-                                Item Category:
-                              </strong>
-                              <p className="text-gray-700">Burger</p>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <strong className="text-black">Email: </strong>
-                              <p className="text-gray-700">
-                                {data?.data?.userId?.email}
-                              </p>
-                            </div>
-
-                           
-
-                            <div className="flex items-center gap-2">
-                              <strong className="text-black">
-                                Order Price:{" "}
-                              </strong>
-                              ${data?.data?.totalAmount}
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <strong className="text-black">
-                                Revenue Amount:
-                              </strong>
-                              <p className="text-gray-700">{data?.data?.revenue}%</p>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <strong className="text-black">
-                                Payment By:{" "}
-                              </strong>
-                              <p className="text-gray-700">{data?.data?.paymentMethod}</p>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <strong className="text-black">
-                                Order status:{" "}
-                              </strong>
-                              <p className="text-gray-700">{data?.data?.orderStatus}</p>
-                            </div>
-
-
-                            <div className="flex items-center gap-2">
-                              <strong className="text-black">
-                                Order Date:
-                              </strong>
-                              <p className="text-gray-700">
-                                {/* {formatDate(item.createdAt)} */}
-                                21-01-2025
-                              </p>
-                            </div>
-                          </div>
+                         
+                        <div className="space-y-4">
+        {data?.data?.products.map((order, index) => (
+          <div key={index} className="flex p-3 border rounded-lg border-amber-200">
+            <div className="w-24 h-16 mr-4">
+              <img src={`${baseURL}${order?.productId?.image}`} alt={order.item} className="object-cover w-full h-full rounded-lg" />
+            </div>
+            <div className="flex-1">
+              <div className="text-sm">
+                
+                <p><span className="font-medium">Product Name:</span> {order.productName}</p>
+                
+                
+                <p><span className="font-medium">Item & Qty:</span> {order.item}*{order.quantity}</p>
+                <p><span className="font-medium">Price:</span> ${order.price}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+                          
                         </div>
                       </section>
 

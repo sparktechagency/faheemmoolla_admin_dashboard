@@ -18,7 +18,7 @@ export default function LoginPage() {
     try {
       const response = await Login(values).unwrap();
       saveToken(response?.data?.token);
-      localStorage.setItem("loginId", response?.data?.user?._id);
+      localStorage.setItem("adminLoginId", response?.data?.user?._id);
       route("/");
     } catch (error) {
       console.error("Feild login, Please try again!!:", error);
