@@ -24,8 +24,6 @@ const EarningTableRow = ({ item, list }) => {
   };
 
 
-  console.log(data?.data?.products)
-
 
   return (
     <>
@@ -135,6 +133,7 @@ const EarningTableRow = ({ item, list }) => {
                 
                 <p><span className="font-medium">Item & Qty:</span> {order.item}*{order.quantity}</p>
                 <p><span className="font-medium">Price:</span> ${order.price}</p>
+                <p><span className="font-medium">Offer Price:</span> ${order?.productId?.offerPrice}</p>
               </div>
             </div>
           </div>
