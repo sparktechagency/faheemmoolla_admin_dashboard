@@ -24,6 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
+      - run: npm run build --if-present
       - name: Change Directory
         run: cd /home/masters/fahem-molla-admin/_work/faheemmoolla_admin_dashboard/faheemmoolla_admin_dashboard
       - run: pm2 restart 34
