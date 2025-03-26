@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import BussinessManagementTable from "../../components/bussinessManagementTable";
+import BussinessManagementTable from "../../components/BussinessManagementTable";
 import { useBussinessShopOfferQuery } from "../../features/bussinessManagement/bussinessApi";
 import { Spin } from "antd";
 const BusinessManagement = () => {
