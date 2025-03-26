@@ -1,4 +1,4 @@
-import { Button, Input, Form } from "antd";
+import { Button, Input, Form, message } from "antd";
 import { login, googleIcon, companyLogo } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../features/auth/authApi";
@@ -9,10 +9,13 @@ export default function LoginPage() {
   const route = useNavigate();
   const [Login, { isLoading }] = useLoginMutation();
 
+
   const handleGoogleLogin = () => {
     // Redirect the user to initiate Google OAuth flow
     window.location.href = `${baseURL}/api/v1/auth/google`;
   };
+
+  
 
   const onFinish = async (values) => {
     try {
@@ -21,8 +24,8 @@ export default function LoginPage() {
       localStorage.setItem("adminLoginId", response?.data?.user?._id);
       route("/");
     } catch (error) {
-      console.error("Feild login, Please try again!!:", error);
-      alert("Feild login, Please try again!!");
+      message.error(error?.data?.message);
+      // alert("Feild login, Please try again!!");
     }
   };
 
