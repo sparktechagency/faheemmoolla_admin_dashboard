@@ -24,5 +24,6 @@ export const baseApi = createApi({
     "profile",
     "category",
     "notification",
+    "walletbalance",
   ],
 });

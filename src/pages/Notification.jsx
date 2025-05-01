@@ -12,7 +12,7 @@ import {
 } from "../features/notification/notification";
 import io from "socket.io-client";
 import moment from "moment";
-import { baseURL } from "../utils/BaseURL";
+import { baseURL, SocketBaseURL } from "../utils/BaseURL";
 
 const NotificationPopup = () => {
   const path = useLocation();
@@ -37,7 +37,7 @@ const NotificationPopup = () => {
     useReadNotificationMutation();
 
   useEffect(() => {
-    socketRef.current = io(baseURL);
+    socketRef.current = io(SocketBaseURL);
 
     socketRef.current.on("connect", () => {});
 
@@ -116,9 +116,9 @@ const NotificationPopup = () => {
 
   const formatTime = (timestamp) => {
      if (!timestamp) return "Just now";
-       
+
        const bangladeshTime = moment(timestamp).add(6, 'hours');
-       
+
        return bangladeshTime.fromNow();
   };
 

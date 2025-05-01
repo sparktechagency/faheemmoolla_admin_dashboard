@@ -1,24 +1,25 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Layout from "./layouts/Layout";
-import Dashboard from "./pages/dashboard/Dashboard";
-import NotFound from "./pages/NotFound";
-import Earning from "./pages/earning/Earning";
-import Settings from "./pages/Settings/Settings";
-import Login from "./pages/auth/SignIn";
-import ForgotPassword from "./pages/auth/ForgotPassword";
-import CheckEmail from "./pages/auth/CheckEmail";
-import SetPassword from "./pages/auth/SetPassword";
-import Verify from "./pages/auth/Verify_user";
-import SuccessReset from "./pages/auth/SucessReset";
-import Notification from "./pages/Notification";
-import PrivacyPolicy from "./pages/privacyPolicy";
-import TermsConditions from "./pages/TermsConditions";
-import UserProfile from "./pages/UserProfile";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-import UserManagement from "./pages/UserManagement/UserManagement";
+import Layout from "./layouts/Layout";
+import CheckEmail from "./pages/auth/CheckEmail";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import SetPassword from "./pages/auth/SetPassword";
+import Login from "./pages/auth/SignIn";
+import SuccessReset from "./pages/auth/SucessReset";
+import Verify from "./pages/auth/Verify_user";
 import BusinessManagement from "./pages/BusinessManagement/BusinessManagement";
 import OfferReview from "./pages/BusinessManagement/OfferReview";
 import Category from "./pages/Category/Category";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Earning from "./pages/earning/Earning";
+import NotFound from "./pages/NotFound";
+import Notification from "./pages/Notification";
+import Payouts from "./pages/Payouts/Payouts";
+import PrivacyPolicy from "./pages/privacyPolicy";
+import Settings from "./pages/Settings/Settings";
+import TermsConditions from "./pages/TermsConditions";
+import UserManagement from "./pages/UserManagement/UserManagement";
+import UserProfile from "./pages/UserProfile";
 
 const Routers = () => {
   return (
@@ -46,6 +47,7 @@ const Routers = () => {
         >
           <Route index element={<Dashboard />} />
           <Route path="user-management" element={<UserManagement />} />
+          <Route path="payouts" element={<Payouts />} />
           <Route path="business-management">
             <Route index element={<BusinessManagement />} />
             <Route path="offer-review" element={<OfferReview />} />

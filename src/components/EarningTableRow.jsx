@@ -40,9 +40,9 @@ const EarningTableRow = ({ item, list }) => {
           {item?.products?.reduce((sum, product) => sum + product.quantity, 0)}
         </div>
         <div className="px-4 py-3 text-center">
-          ${item?.totalAmount}
+         R {item?.totalAmount}
         </div>
-        <div className="px-4 py-3 text-center">${item?.adminRevenue}</div>
+        <div className="px-4 py-3 text-center">R {item?.adminRevenue}</div>
         <div className="px-4 py-3 text-center">{item?.revenue}%</div>
         <div className="px-4 py-3 text-center">
           {formatDate(item.createdAt)}
@@ -118,7 +118,7 @@ const EarningTableRow = ({ item, list }) => {
                     <section className="flex justify-center gap-5 item-center">
                       <section className="w-full p-2 border rounded-md border-primary">
                         <div className="">
-                         
+
                         <div className="space-y-4">
         {data?.data?.products.map((order, index) => (
           <div key={index} className="flex p-3 border rounded-lg border-amber-200">
@@ -127,10 +127,10 @@ const EarningTableRow = ({ item, list }) => {
             </div>
             <div className="flex-1">
               <div className="text-sm">
-                
+
                 <p><span className="font-medium">Product Name:</span> {order.productName}</p>
-                
-                
+
+
                 <p><span className="font-medium">Item & Qty:</span> {order.item}*{order.quantity}</p>
                 <p><span className="font-medium">Price:</span> ${order.price}</p>
                 <p><span className="font-medium">Offer Price:</span> ${order?.productId?.offerPrice}</p>
@@ -139,7 +139,7 @@ const EarningTableRow = ({ item, list }) => {
           </div>
         ))}
       </div>
-                          
+
                         </div>
                       </section>
 
@@ -166,7 +166,7 @@ const EarningTableRow = ({ item, list }) => {
                             <p className="text-gray-700">Burger</p>
                           </div>
 
-                         
+
 
                           <div className="flex items-center gap-2">
                               <strong className="text-black">Location: </strong>

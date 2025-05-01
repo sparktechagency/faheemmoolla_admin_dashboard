@@ -5,10 +5,10 @@ import CustomLoading from "./CustomLoading";
 import { useLocation, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
 import io from "socket.io-client";
-import { baseURL } from "../utils/BaseURL";
+import { baseURL, SocketBaseURL } from "../utils/BaseURL";
 
 // Initialize socket connection - replace with your actual backend URL
-const socket = io(baseURL);
+const socket = io(SocketBaseURL);
 const BussinessManagementTable = ({ columns }) => {
   const location = useLocation();
   const navigate = useNavigate();

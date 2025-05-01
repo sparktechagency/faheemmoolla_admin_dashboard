@@ -13,7 +13,7 @@ import {
 } from "../features/notification/notification";
 import io from "socket.io-client";
 import moment from "moment";
-import { baseURL } from "../utils/BaseURL";
+import { baseURL, SocketBaseURL } from "../utils/BaseURL";
 
 const NotificationPopup = () => {
   const path = useLocation();
@@ -33,7 +33,7 @@ const NotificationPopup = () => {
   const [readNotification, {isLoading:updateLoading } ] = useReadNotificationMutation();
 
   useEffect(() => {
-    socketRef.current = io(baseURL);
+    socketRef.current = io(SocketBaseURL);
 
     socketRef.current.on("connect", () => {
     });
@@ -85,11 +85,17 @@ const NotificationPopup = () => {
       } else if (path.pathname === "/earning") {
         navigate("/earning");
       }
+      else if (path.pathname === "/payouts") {
+        navigate("/payouts");
+      }
     } else {
       if (path.pathname === "/business-management") {
         navigate(`/business-management?search=${searchQuery}`);
       } else if (path.pathname === "/earning") {
         navigate(`/earning?search=${searchQuery}`);
+      }
+      else if (path.pathname === "/payouts") {
+        navigate(`/payouts?search=${searchQuery}`);
       }
     }
   };
@@ -113,9 +119,9 @@ const NotificationPopup = () => {
 
   const formatTime = (timestamp) => {
     if (!timestamp) return "Just now";
-    
+
     const bangladeshTime = moment(timestamp).add(6, 'hours');
-    
+
     return bangladeshTime.fromNow();
   };
 
@@ -145,7 +151,7 @@ const NotificationPopup = () => {
 
   return (
     <div className="flex items-center justify-between">
-      {path.pathname === "/order" || path.pathname === "/earning" ? (
+      {path.pathname === "/order" || path.pathname === "/earning" || path.pathname === "/payouts" ? (
         <div className="flex items-center justify-between w-7/12">
           <Input
             size="large"

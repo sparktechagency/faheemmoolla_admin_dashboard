@@ -1,14 +1,15 @@
 import {
   dashboard,
-  order,
-  shop,
-  meal,
   earning,
-  setting,
-  password,
+  meal,
   notification,
+  order,
+  password,
+  payouts,
   privacy,
   profile,
+  setting,
+  shop,
 } from "../assets/assets";
 
 export const menuDatas = [
@@ -31,6 +32,11 @@ export const menuDatas = [
     icon: earning,
     title: "Total earning",
     link: "/earning",
+  },
+  {
+    icon: payouts,
+    title: "Payouts",
+    link: "/payouts",
   },
   {
     icon: meal,
