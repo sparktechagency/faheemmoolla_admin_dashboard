@@ -18,11 +18,10 @@ import totalRevenue from "./topCards/totalRevenue.png";
 import totalitem from "./topCards/totalItem.png";
 import totalShop from "./topCards/totalShop.png";
 
-import shopImage from "./shop/shop.png";
+import shopImage from "./shop/Shop.png";
 import shopLogo from "./shop/shopIcon.png";
 
 import offer01 from "./offer/offer01.png";
-
 
 // dashboard sidebar icons
 import dashboard from "./icons/dashboard.svg";
