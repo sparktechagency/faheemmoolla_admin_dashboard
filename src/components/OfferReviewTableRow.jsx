@@ -2,7 +2,7 @@ import { Card, Dropdown, message, Radio } from "antd";
 import { useEffect, useState } from "react";
 import { useUpdateOfferStatusMutation } from "../features/bussinessManagement/bussinessApi";
 
-const OfferReviewTableRow = ({ item , num }) => {
+const OfferReviewTableRow = ({ item, num }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [updateOfferStatus, { isLoading: isLoadingStatus }] =
     useUpdateOfferStatusMutation();
@@ -41,7 +41,7 @@ const OfferReviewTableRow = ({ item , num }) => {
       <div className="px-4 py-3 text-center">{item.shopCategory}</div>
       <div className="px-4 py-3 text-center">{item.stateDate}</div>
       <div className="px-4 py-3 text-center">{item.endDate}</div>
-      <div className="py-3 text-center">{item?.itemId?.price}</div>
+      <div className="py-3 text-center">R {item?.itemId?.price}</div>
 
       <div className="text-center">
         <Dropdown
@@ -70,9 +70,8 @@ const OfferReviewTableRow = ({ item , num }) => {
         >
           <div className="py-1 transition duration-200 border border-red-500 rounded hover:bg-gray-100">
             <button
-              className={`w-[180px] p-2.5 text-white rounded ${
-                statusName === "blocked" ? "bg-red-600" : "bg-primary"
-              }`}
+              className={`w-[180px] p-2.5 text-white rounded ${statusName === "blocked" ? "bg-red-600" : "bg-primary"
+                }`}
             >
               {isLoadingStatus ? "Loading..." : statusName}{" "}
               {/* Use statusName here */}
