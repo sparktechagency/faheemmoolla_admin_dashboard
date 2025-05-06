@@ -1,34 +1,34 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./pages/NotFound";
+import TermsConditions from "./pages/TermsConditions";
+import PrivacyPolicy from "./pages/privacyPolicy";
+import Notification from "./pages/Notification";
+import Profile from "./pages/UserProfile";
+import Setting from "./pages/Settings/Settings";
+import Earning from "./pages/earning/Earning";
+import Category from "./pages/Category/Category";
+import OfferReview from "./pages/BusinessManagement/OfferReview";
+import BusinessManagement from "./pages/BusinessManagement/BusinessManagement";
+import Payouts from "./pages/Payouts/Payouts";
+import UserManagement from "./pages/UserManagement/UserManagement";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Layout from "./layouts/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
+import SetPassword from "./pages/auth/SetPassword";
 import CheckEmail from "./pages/auth/CheckEmail";
 import ForgotPassword from "./pages/auth/ForgotPassword";
-import SetPassword from "./pages/auth/SetPassword";
-import Login from "./pages/auth/SignIn";
+import LoginPage from "./pages/auth/SignIn";
 import SuccessReset from "./pages/auth/SucessReset";
-import Verify from "./pages/auth/Verify_user";
-import BusinessManagement from "./pages/BusinessManagement/BusinessManagement";
-import OfferReview from "./pages/BusinessManagement/OfferReview";
-import Category from "./pages/Category/Category";
-import Dashboard from "./pages/dashboard/Dashboard";
-import Earning from "./pages/earning/Earning";
-import NotFound from "./pages/NotFound";
-import Notification from "./pages/Notification";
-import Payouts from "./pages/Payouts/Payouts";
-import PrivacyPolicy from "./pages/privacyPolicy";
-import Settings from "./pages/Settings/Settings";
-import TermsConditions from "./pages/TermsConditions";
-import UserManagement from "./pages/UserManagement/UserManagement";
-import UserProfile from "./pages/UserProfile";
+
 
 const Routers = () => {
   return (
     <Router>
       <Routes>
         {/* Authentication routes */}
-        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/login" element={<LoginPage />} />
         <Route path="/auth/success" element={<SuccessReset />} />
-        <Route path="/auth/signup/verify" element={<Verify />} />
+        {/* <Route path="/auth/signup/verify" element={<Verify />} /> */}
         <Route
           path="/auth/login/forgot_password"
           element={<ForgotPassword />}
@@ -57,8 +57,8 @@ const Routers = () => {
           </Route>
           <Route path="earning" element={<Earning />} />
           <Route path="settings">
-            <Route index element={<Settings />} />
-            <Route path="profile" element={<UserProfile />} />
+            <Route index element={<Setting />} />
+            <Route path="profile" element={<Profile />} />
             <Route path="notification" element={<Notification />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="terms-conditions" element={<TermsConditions />} />

@@ -8,7 +8,7 @@ import { saveToken } from "../../features/auth/authService";
 
 // import { setCredentials } from "../../authSlice";
 
-export default function LoginPage() {
+export default function SetPassword() {
   const router = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);

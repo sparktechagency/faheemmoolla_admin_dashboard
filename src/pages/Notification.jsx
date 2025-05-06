@@ -14,7 +14,7 @@ import io from "socket.io-client";
 import moment from "moment";
 import { baseURL, SocketBaseURL } from "../utils/BaseURL";
 
-const NotificationPopup = () => {
+const Notification = () => {
   const path = useLocation();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
@@ -223,4 +223,4 @@ const NotificationPopup = () => {
   );
 };
 
-export default NotificationPopup;
+export default Notification;

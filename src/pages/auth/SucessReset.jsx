@@ -4,7 +4,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { checkCircle , passwordReset } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 
-export default function CheckEmail() {
+export default function SuccessReset() {
   const router = useNavigate();
   const [loading, setLoading] = useState(false);
 
