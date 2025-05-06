@@ -1,9 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import NotFound from "./pages/NotFound";
-import TermsConditions from "./pages/TermsConditions";
-import PrivacyPolicy from "./pages/privacyPolicy";
-import Notification from "./pages/Notification";
-import Profile from "./pages/UserProfile";
+
+
+
 import Setting from "./pages/Settings/Settings";
 import Earning from "./pages/earning/Earning";
 import Category from "./pages/Category/Category";
@@ -19,6 +17,11 @@ import CheckEmail from "./pages/auth/CheckEmail";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import LoginPage from "./pages/auth/SignIn";
 import SuccessReset from "./pages/auth/SucessReset";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import NotFound from "./pages/NotFound";
+import TermsConditions from "./pages/TermsConditions";
+import Notification from "./pages/Notification";
+import Profile from "./pages/UserProfile";
 
 
 const Routers = () => {
