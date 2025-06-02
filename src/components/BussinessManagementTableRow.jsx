@@ -79,17 +79,17 @@ const BussinessManagementTableRow = ({ item, list }) => {
   };
 
   return (
-    <div className="grid items-center grid-cols-9 pr-3 my-3 text-sm bg-gray-100 rounded-lg whitespace-nowrap">
-      <div className="py-3 text-center">{list}</div>
-      <div className="px-3 py-3 text-center">{item?.shopName}</div>
-      <div className="px-3 py-3 text-start">{item?.userId?.email}</div>
-      <div className="px-4 py-3 text-center">{item?.location || "Dhaka"}</div>
-      <div className="px-4 py-3 text-center">{item?.userId?.phone}</div>
-      <div className="px-4 py-3 text-center">{item?.totalOrders}</div>
-      <div className="py-3 text-center">{item.revenue}%</div>
-      <div className="col-span-2 py-2 border border-green-500 rounded">
-        <div className="flex items-center justify-between gap-2 rounded">
-          <div className="w-1/2 px-1">
+    <div className="grid items-center grid-cols-9 pr-3 my-3 text-sm bg-gray-100 rounded-lg min-w-0">
+      <div className="py-3 text-center whitespace-normal break-words min-w-0">{list}</div>
+      <div className="px-3 py-3 text-center whitespace-normal break-words min-w-0">{item?.shopName}</div>
+      <div className="px-3 py-3 text-start w-full whitespace-normal break-words min-w-0">{item?.userId?.email}</div>
+      <div className="px-4 py-3 text-center whitespace-normal break-words min-w-0">{item?.location || "Dhaka"}</div>
+      <div className="px-4 py-3 text-center whitespace-normal break-words min-w-0">{item?.userId?.phone}</div>
+      <div className="px-4 py-3 text-center whitespace-normal break-words min-w-0">{item?.totalOrders}</div>
+      <div className="py-3 text-center whitespace-normal break-words min-w-0">{item.revenue}%</div>
+      <div className="col-span-2 border py-1 border-green-500 rounded">
+        <div className="flex items-stretch h-full">
+          <div className="w-1/2 px-1 flex">
             <Dropdown
               open={revenueDropdown}
               onOpenChange={setRevenueDropdown}
@@ -127,15 +127,15 @@ const BussinessManagementTableRow = ({ item, list }) => {
               )}
               placement="bottomRight"
             >
-              <div className="w-full">
-                <button className="w-full p-2.5 text-white rounded bg-primary hover:bg-opacity-90 transition-colors">
+              <div className="w-full flex">
+                <button className="w-full p-2.5 text-white rounded bg-primary hover:bg-opacity-90 transition-colors flex items-center justify-center h-full">
                   Update Revenue
                 </button>
               </div>
             </Dropdown>
           </div>
 
-          <div className="w-1/2 px-1">
+          <div className="w-1/2 px-1 flex">
             <Dropdown
               open={dropdownOpen}
               onOpenChange={setDropdownOpen}
@@ -163,11 +163,10 @@ const BussinessManagementTableRow = ({ item, list }) => {
               )}
               placement="bottomRight"
             >
-              <div className="w-full">
+              <div className="w-full flex">
                 <button
-                  className={`w-full p-2.5 text-white rounded transition-colors hover:bg-opacity-90 ${
-                    statusName === "blocked" ? "bg-red-600" : "bg-primary"
-                  }`}
+                  className={`w-full p-2.5 text-white rounded transition-colors hover:bg-opacity-90 flex items-center justify-center h-full ${statusName === "blocked" ? "bg-red-600" : "bg-primary"
+                    }`}
                 >
                   {statusLoading ? "Loading..." : statusName}
                 </button>

@@ -13,7 +13,7 @@ import {
 } from "../features/notification/notification";
 import io from "socket.io-client";
 import moment from "moment";
-import { baseURL, SocketBaseURL } from "../utils/BaseURL";
+import { baseURL } from "../utils/BaseURL";
 
 const NotificationPopup = () => {
   const path = useLocation();
@@ -33,7 +33,7 @@ const NotificationPopup = () => {
   const [readNotification, {isLoading:updateLoading } ] = useReadNotificationMutation();
 
   useEffect(() => {
-    socketRef.current = io(SocketBaseURL);
+    socketRef.current = io(baseURL);
 
     socketRef.current.on("connect", () => {
     });

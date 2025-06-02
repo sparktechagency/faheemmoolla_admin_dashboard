@@ -5,10 +5,10 @@ import CustomLoading from "./CustomLoading";
 import { useLocation, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
 import io from "socket.io-client";
-import { baseURL, SocketBaseURL } from "../utils/BaseURL";
+import { baseURL } from "../utils/BaseURL";
 
 // Initialize socket connection - replace with your actual backend URL
-const socket = io(SocketBaseURL);
+const socket = io(baseURL);
 const BussinessManagementTable = ({ columns }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -60,10 +60,15 @@ useEffect(() => {
   return (
     <div className="overflow-x-auto">
       <div className="min-w-[1200px] w-full bg-transparent rounded-lg shadow-md space-y-3">
-        {/* Header section */}
+        {/* Header section - add min-width to columns */}
         <div className="grid grid-cols-9 text-center border-2 border-opacity-50 rounded-lg bg-surfacePrimary border-primary">
           {columns.map((column, index) => (
-            <div key={index} className="py-3 text-center">
+            <div 
+              key={index} 
+              className={`py-3 text-center ${
+                index === 2 ? "min-w-[200px]" : index === 3 ? "min-w-[150px]" : ""
+              }`}
+            >
               {column}
             </div>
           ))}

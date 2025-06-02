@@ -12,7 +12,6 @@ const UsermanagementTableRow = ({ item, list }) => {
 
   const [statusName, setStatusName] = useState(item.status);
 
-  // Update statusName whenever item.status changes
   useEffect(() => {
     setStatusName(item.status);
   }, [item.status]);
@@ -37,20 +36,32 @@ const UsermanagementTableRow = ({ item, list }) => {
   };
 
   return (
-    <div className="grid grid-cols-8 my-3 text-sm bg-gray-100 rounded-lg whitespace-nowrap">
-      <div className="py-3 text-center">{list}</div>
-      <div className="px-3 py-3 text-center">{item?.name}</div>
-      <div className="px-3 py-3 text-center">{item.email}</div>
-      <div className="px-4 py-3 text-center">{"Dhaka"}</div>
-      <div className="px-4 py-3 text-center">{item.phone}</div>
-      <div className="px-4 py-3 text-center">
+    <div className="grid grid-cols-8 my-3 text-sm bg-gray-100 rounded-lg min-w-0">
+      {/* Table Cells */}
+      <div className="py-3 text-center whitespace-normal break-words min-w-0 px-1">
+        {list}
+      </div>
+      <div className="px-1 py-3 text-center whitespace-normal break-words min-w-0">
+        {item?.name}
+      </div>
+      <div className="px-1 py-3 text-center whitespace-normal break-words min-w-0">
+        {item.email}
+      </div>
+      <div className="px-1 py-3 text-center whitespace-normal break-words min-w-0">
+        {"Dhaka"}
+      </div>
+      <div className="px-1 py-3 text-center whitespace-normal break-words min-w-0">
+        {item.phone}
+      </div>
+      <div className="px-1 py-3 text-center whitespace-normal break-words min-w-0">
         {new Date(item.updatedAt).toLocaleDateString("en-GB")}
       </div>
-      <div className="py-3 text-center">
+      <div className="px-1 py-3 text-center whitespace-normal break-words min-w-0">
         {item?.orders === true ? "Yes" : "No"}
       </div>
 
-      <div className="text-center">
+      {/* Status Dropdown */}
+      <div className="px-1 py-1 border border-green-500 rounded text-center min-w-0 flex items-center justify-center">
         <Dropdown
           open={dropdownOpen}
           onOpenChange={setDropdownOpen}
@@ -60,7 +71,7 @@ const UsermanagementTableRow = ({ item, list }) => {
             <Card className="shadow-lg w-52">
               <Radio.Group
                 onChange={handleRadioChange}
-                value={statusName} // Use statusName instead of item.userStatus
+                value={statusName}
                 disabled={isLoadingStatus}
                 className="flex flex-col space-y-2"
               >
@@ -75,14 +86,13 @@ const UsermanagementTableRow = ({ item, list }) => {
           )}
           placement="bottomRight"
         >
-          <div className="py-1 transition duration-200 border border-red-500 rounded hover:bg-gray-100">
+          <div className="w-full max-w-[180px] mx-auto">
             <button
-              className={`w-[180px] p-2.5 text-white rounded ${
+              className={`w-full p-2 text-white rounded ${
                 statusName === "blocked" ? "bg-red-600" : "bg-primary"
-              }`}
+              } hover:opacity-90 transition-opacity`}
             >
-              {isLoadingStatus ? "Loading..." : statusName}{" "}
-              {/* Use statusName here */}
+              {isLoadingStatus ? "Loading..." : statusName}
             </button>
           </div>
         </Dropdown>
