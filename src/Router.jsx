@@ -22,6 +22,8 @@ import NotFound from "./pages/NotFound";
 import TermsConditions from "./pages/TermsConditions";
 import Notification from "./pages/Notification";
 import Profile from "./pages/UserProfile";
+import About from './pages/About';
+import Support from './pages/Support';
 
 
 const Routers = () => {
@@ -63,6 +65,8 @@ const Routers = () => {
             <Route index element={<Setting />} />
             <Route path="profile" element={<Profile />} />
             <Route path="notification" element={<Notification />} />
+            <Route path="about-us" element={<About />} />
+            <Route path="support" element={<Support />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="terms-conditions" element={<TermsConditions />} />
           </Route>

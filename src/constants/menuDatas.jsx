@@ -1,4 +1,5 @@
 import {
+  about,
   dashboard,
   earning,
   meal,
@@ -10,6 +11,8 @@ import {
   profile,
   setting,
   shop,
+  support,
+  
 } from "../assets/assets";
 
 export const menuDatas = [
@@ -55,6 +58,16 @@ export const menuDatas = [
         subicon: notification,
         title: "Notification",
         link: "/settings/notification",
+      },
+      {
+        subicon: about,
+        title: "About Us",
+        link: "/settings/about-us",
+      },
+        {
+        subicon: support,
+        title: "Support",
+        link: "/settings/support",
       },
       {
         subicon: privacy,

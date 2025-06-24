@@ -8,8 +8,10 @@ const Payouts = () => {
     "SL",
     "Name",
     "Email",
-    "Yoco Marcent ID",
-    "Payout ID",
+    "Account Number",
+    "Bank Holder Name",
+    "Bank Name",
+    "Branch Name",
     "Withdraw Balance",
   
   ]

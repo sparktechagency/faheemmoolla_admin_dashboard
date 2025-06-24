@@ -38,6 +38,8 @@ import notification from './icons/notification.svg';
 import privacy from './icons/privacy.svg';
 import profile from './icons/profile.svg';
 import payouts from './credit-card.png';
+import about from './about.png';
+import support from './support.png';
 
 
 
@@ -45,6 +47,8 @@ import payouts from './credit-card.png';
 
 
 export {
+  about,
+  support,
   profile,
   payouts,
   dashboard,

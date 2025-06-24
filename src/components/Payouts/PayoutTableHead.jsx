@@ -1,5 +1,5 @@
 import { Alert, Pagination, Spin } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useWalletPayoutsQuery } from "../../features/wallet/walletApi";
 import PayoutTableBody from "./PayoutTableBody";
@@ -27,6 +27,8 @@ const PayoutTableHead = ({ columns }) => {
     page: currentPage
   });
 
+  console.log(allPayoutData)
+
 
   console.log(allPayoutData)
 
@@ -51,7 +53,7 @@ const PayoutTableHead = ({ columns }) => {
     <div className="space-y-4">
       <div className="min-w-[1200px] w-full bg-transparent rounded-lg space-y-3">
         {/* Header */}
-        <div className="grid grid-cols-8 text-center border-2 border-opacity-50 rounded-lg bg-surfacePrimary px-2 border-SurfacePrimary">
+        <div className="grid grid-cols-10 text-center border-2 border-opacity-50 rounded-lg bg-surfacePrimary px-2 border-SurfacePrimary">
           {columns.map((column, index) => (
             <div key={index} className="py-3 font-semibold text-center">
               {column}
@@ -64,7 +66,7 @@ const PayoutTableHead = ({ columns }) => {
         <div className="border-2 border-opacity-50 rounded-lg bg-surfacePrimary border-SurfacePrimary">
           {isLoading ? (
             <div className="py-10 text-center">
-              <Spin size="large" tip="Loading payouts..." />
+              <Spin size="default" tip="Loading payouts..." />
             </div>
           ) : isError ? (
             <Alert
@@ -76,7 +78,7 @@ const PayoutTableHead = ({ columns }) => {
             />
           ) : allPayoutData?.data?.length > 0 ? (
             allPayoutData.data.map((item, index) => (
-              <PayoutTableBody item={item} key={index } sl={ index+1} />
+              <PayoutTableBody item={item} key={index} sl={index + 1} />
             ))
           ) : (
             <h3 className="py-10 text-center">

@@ -1,5 +1,5 @@
+import { Modal, Select, message } from 'antd';
 import { useState } from 'react';
-import { Select, Modal, message } from 'antd';
 import { useUpdatePayoutMutation } from '../../features/wallet/walletApi';
 
 
@@ -54,13 +54,15 @@ const PayoutTableBody = ({ item, sl }) => {
   return (
     <>
       {/* Table Row */}
-      <div className="grid items-center grid-cols-8 gap-2 px-2 my-3 text-sm bg-gray-100 rounded-lg whitespace-nowrap mx-2">
+      <div className="grid items-center grid-cols-10 gap-2 px-2 my-3 text-sm bg-gray-100 rounded-lg whitespace-nowrap mx-2">
         <div className="flex items-center justify-center py-3">{sl}</div>
-        <div className="flex items-center justify-center py-3">{item.ownerId.name}</div>
-        <div className="flex items-center justify-center py-3">{item.ownerId.email}</div>
-        <div className="flex items-center justify-center py-3">{item.ownerId.yocoMerchantAcc}</div>
-        <div className="flex items-center justify-center py-3">{item.payoutId}</div>
-        <div className="flex items-center justify-center py-3">R {item.payoutBalance}</div>
+        <div className="flex items-center justify-center py-3">{item?.ownerId?.name}</div>
+        <div className="flex items-center justify-center py-3">{item?.ownerId?.email}</div>
+        <div className="flex items-center justify-center py-3">{item?.ownerId?.yocoMerchantAcc}</div>
+        <div className="flex items-center justify-center py-3">{item?.ownerId?.bankHolderName}</div>
+        <div className="flex items-center justify-center py-3">{item?.ownerId?.bankName}</div>
+        <div className="flex items-center justify-center py-3">{item?.ownerId?.bankBranch}</div>
+        <div className="flex items-center justify-center py-3">R {item?.payoutBalance}</div>
         <div className="col-span-2 py-2 border border-green-500 rounded">
           <div className="flex items-center justify-between gap-2 rounded">
             <div className="w-1/2 px-1">
@@ -97,15 +99,7 @@ const PayoutTableBody = ({ item, sl }) => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
-        footer={[
-          <button
-            key="back"
-            onClick={handleCancel}
-            className="px-6 py-2 text-white bg-[#C68C4E] rounded-lg hover:bg-[#B87D42] transition-colors duration-200"
-          >
-            Close
-          </button>,
-        ]}
+        footer={null}
         width={600}
         bodyStyle={{ padding: '24px' }}
       >
@@ -113,47 +107,61 @@ const PayoutTableBody = ({ item, sl }) => {
           <div className="space-y-4">
             <div>
               <p className="text-sm text-gray-500">Payout ID</p>
-              <p className="font-medium">{item.payoutId}</p>
+              <p className="font-medium">{item?.payoutId}</p>
             </div>
             <div>
               <p className="text-sm text-gray-500">Name</p>
-              <p className="font-medium">{item.ownerId.name}</p>
+              <p className="font-medium">{item?.ownerId?.name}</p>
             </div>
             <div>
               <p className="text-sm text-gray-500">Email</p>
-              <p className="font-medium break-all">{item.ownerId.email}</p>
+              <p className="font-medium break-all">{item?.ownerId?.email}</p>
             </div>
           </div>
 
           <div className="space-y-4">
             <div>
               <p className="text-sm text-gray-500">Amount</p>
-              <p className="font-medium text-lg text-[#C68C4E]">R {item.payoutBalance}</p>
+              <p className="font-medium text-lg text-[#C68C4E]">R {item?.payoutBalance}</p>
             </div>
             <div>
               <p className="text-sm text-gray-500">Status</p>
               <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${selectedStatus === 'approved' ? 'bg-green-100 text-green-800' :
-                  selectedStatus === 'rejected' ? 'bg-red-100 text-red-800' :
-                    'bg-yellow-100 text-yellow-800'
+                selectedStatus === 'rejected' ? 'bg-red-100 text-red-800' :
+                  'bg-yellow-100 text-yellow-800'
                 }`}>
                 {selectedStatus.charAt(0).toUpperCase() + selectedStatus.slice(1)}
               </span>
             </div>
             <div>
               <p className="text-sm text-gray-500">Request Date</p>
-              <p className="font-medium">{formatDate(item.createdAt)}</p>
+              <p className="font-medium">{formatDate(item?.createdAt)}</p>
             </div>
           </div>
         </div>
 
         <div className="mt-6 pt-4 border-t">
-          <div>
-            <p className="text-sm text-gray-500">Merchant Account</p>
-            <p className="font-medium">{item.ownerId.yocoMerchantAcc}</p>
-          </div>
-          <div className="mt-2">
-            <p className="text-sm text-gray-500">Database ID</p>
-            <p className="font-medium text-sm text-gray-600">{item._id}</p>
+          <div className='grid grid-cols-2'>
+
+            <div className="mt-2">
+              <p className="text-sm text-gray-500">Account Name</p>
+              <p className="font-medium">{item?.ownerId?.bankHolderName}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Account Number</p>
+              <p className="font-medium">{item?.ownerId?.yocoMerchantAcc}</p>
+            </div>
+
+            <div className="mt-2">
+              <p className="text-sm text-gray-500">Bank Name</p>
+              <p className="font-medium">{item?.ownerId?.bankName}</p>
+            </div>
+
+            <div className="mt-2">
+              <p className="text-sm text-gray-500">Bank Branch Name</p>
+              <p className="font-medium">{item?.ownerId?.bankBranch}</p>
+            </div>
+
           </div>
         </div>
       </Modal>
