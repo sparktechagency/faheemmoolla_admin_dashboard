@@ -14,32 +14,31 @@ const Support = ({ placeholder }) => {
   const [updateSettings] = useUpdateSettingsMutation();
 
 
-   const { data, isLoading: dataLoading } = useGetAllQuery();
-  
-    // Load existing content when data is available
-    useEffect(() => {
-      if (data?.data?.support) {
-        try {
-          // Parse the JSON string to get the actual content
-          const parsedContent = JSON.parse(data.data.support);
-          setContent(parsedContent);
-        } catch (error) {
-          // If parsing fails, use the raw content
-          setContent(data.data.support);
-        }
+  const { data, isLoading: dataLoading } = useGetAllQuery();
+
+  // Load existing content when data is available
+  useEffect(() => {
+    if (data?.data?.support) {
+      try {
+        // Parse the JSON string to get the actual content
+        const parsedContent = JSON.parse(data.data.support);
+        setContent(parsedContent);
+      } catch (error) {
+        // If parsing fails, use the raw content
+        setContent(data.data.support);
       }
-    }, [data]);
+    }
+  }, [data]);
 
   // Configuration object for Jodit Editor with memoization
   const config = useMemo(
     () => ({
-      readonly: false,
-      placeholder: placeholder || "Start typing your support...",
+
       height: 500,
       minHeight: 300,
       maxHeight: 800,
     }),
-    [placeholder]
+
   );
 
   const handleSaveTermsConditions = async () => {

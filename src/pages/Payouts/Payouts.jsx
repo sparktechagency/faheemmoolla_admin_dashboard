@@ -1,4 +1,3 @@
-import React from 'react';
 import PayoutTableHead from '../../components/Payouts/PayoutTableHead';
 
 const Payouts = () => {
@@ -8,12 +7,12 @@ const Payouts = () => {
     "SL",
     "Name",
     "Email",
-    "Account Number",
-    "Bank Holder Name",
+    "Acc No.",
+    "Holder Name",
     "Bank Name",
     "Branch Name",
     "Withdraw Balance",
-  
+
   ]
 
   return (
