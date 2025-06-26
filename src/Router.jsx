@@ -2,28 +2,28 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 
 
-import Setting from "./pages/Settings/Settings";
-import Earning from "./pages/earning/Earning";
-import Category from "./pages/Category/Category";
-import OfferReview from "./pages/BusinessManagement/OfferReview";
-import BusinessManagement from "./pages/BusinessManagement/BusinessManagement";
-import Payouts from "./pages/Payouts/Payouts";
-import UserManagement from "./pages/UserManagement/UserManagement";
-import Dashboard from "./pages/dashboard/Dashboard";
-import Layout from "./layouts/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
-import SetPassword from "./pages/auth/SetPassword";
+import Layout from "./layouts/Layout";
+import About from './pages/About';
+import BusinessManagement from "./pages/BusinessManagement/BusinessManagement";
+import OfferReview from "./pages/BusinessManagement/OfferReview";
+import Category from "./pages/Category/Category";
+import NotFound from "./pages/NotFound";
+import Notification from "./pages/Notification";
+import Payouts from "./pages/Payouts/Payouts";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Setting from "./pages/Settings/Settings";
+import Support from './pages/Support';
+import TermsConditions from "./pages/TermsConditions";
+import UserManagement from "./pages/UserManagement/UserManagement";
+import Profile from "./pages/UserProfile";
 import CheckEmail from "./pages/auth/CheckEmail";
 import ForgotPassword from "./pages/auth/ForgotPassword";
+import SetPassword from "./pages/auth/SetPassword";
 import LoginPage from "./pages/auth/SignIn";
 import SuccessReset from "./pages/auth/SucessReset";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import NotFound from "./pages/NotFound";
-import TermsConditions from "./pages/TermsConditions";
-import Notification from "./pages/Notification";
-import Profile from "./pages/UserProfile";
-import About from './pages/About';
-import Support from './pages/Support';
+import Dashboard from "./pages/dashboard/Dashboard";
+import Earning from "./pages/earning/Earning";
 
 
 const Routers = () => {

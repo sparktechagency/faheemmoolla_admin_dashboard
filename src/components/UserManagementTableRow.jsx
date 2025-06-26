@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useUpdateUserManagementMutation } from "../features/userManagement/userManagementApi";
 
 const UsermanagementTableRow = ({ item, list }) => {
+  console.log(item)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [updateUserManagement, { isLoading: isLoadingStatus }] =
     useUpdateUserManagementMutation(undefined, {
@@ -48,7 +49,7 @@ const UsermanagementTableRow = ({ item, list }) => {
         {item.email}
       </div>
       <div className="px-1 py-3 text-center whitespace-normal break-words min-w-0">
-        {"Dhaka"}
+        {item.address ? item.address : "N/A"}
       </div>
       <div className="px-1 py-3 text-center whitespace-normal break-words min-w-0">
         {item.phone}
@@ -88,9 +89,8 @@ const UsermanagementTableRow = ({ item, list }) => {
         >
           <div className="w-full max-w-[180px] mx-auto">
             <button
-              className={`w-full p-2 text-white rounded ${
-                statusName === "blocked" ? "bg-red-600" : "bg-primary"
-              } hover:opacity-90 transition-opacity`}
+              className={`w-full p-2 text-white rounded ${statusName === "blocked" ? "bg-red-600" : "bg-primary"
+                } hover:opacity-90 transition-opacity`}
             >
               {isLoadingStatus ? "Loading..." : statusName}
             </button>

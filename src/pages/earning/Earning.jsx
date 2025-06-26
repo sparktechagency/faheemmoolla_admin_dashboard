@@ -13,6 +13,7 @@ const columns = [
   "Admin Revenue",
   "Percentage",
   "Order Date",
+  "Status",
   "Action",
 ];
 

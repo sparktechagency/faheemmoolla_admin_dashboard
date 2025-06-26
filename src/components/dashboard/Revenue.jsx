@@ -50,7 +50,7 @@ const CustomDot = (props) => {
           y={cy - 40}
           width={80}
           height={20}
-          className="hidden sm:block" // Hide on very small screens
+          className="hidden sm:block"
         >
           <div
             style={{
@@ -87,6 +87,14 @@ const Revenue = () => {
     { length: 5 },
     (_, i) => new Date().getFullYear() - i
   );
+
+  // Calculate min and max revenue for CustomDot
+  const maxRevenue = revenueData?.data
+    ? Math.max(...revenueData.data.map((item) => item.totalRevenue))
+    : 0;
+  const minRevenue = revenueData?.data
+    ? Math.min(...revenueData.data.map((item) => item.totalRevenue))
+    : 0;
 
   return (
     <section className="w-full md:w-10/12 lg:w-8/12 mx-auto px-2 sm:px-1 py-1 rounded-[10px] border border-primary">
@@ -131,7 +139,9 @@ const Revenue = () => {
                 />
                 <YAxis
                   tick={{ fill: "#aaa", fontSize: "11px" }}
-                  tickFormatter={(tick) => `R ${tick / 1000}k`}
+                  tickFormatter={(tick) => `$${tick / 1000}k`}
+                  domain={[0, 100000]}
+                  ticks={[0, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000]}
                   width={40}
                 />
                 <Tooltip content={<CustomTooltip />} />
@@ -140,7 +150,13 @@ const Revenue = () => {
                   dataKey="totalRevenue"
                   stroke="#1890ff"
                   strokeWidth={2}
-                  dot={<CustomDot />}
+                  dot={(props) => (
+                    <CustomDot
+                      {...props}
+                      maxRevenue={maxRevenue}
+                      minRevenue={minRevenue}
+                    />
+                  )}
                 />
               </LineChart>
             </ResponsiveContainer>

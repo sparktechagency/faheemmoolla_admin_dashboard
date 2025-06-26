@@ -1,6 +1,6 @@
-import { Button, Input, Form, message, notification } from "antd";
-import { login, googleIcon, companyLogo } from "../../assets/assets";
+import { Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { companyLogo, login } from "../../assets/assets";
 import { useLoginMutation } from "../../features/auth/authApi";
 import { saveToken } from "../../features/auth/authService";
 import { baseURL } from "../../utils/BaseURL";
@@ -15,7 +15,7 @@ export default function LoginPage() {
     window.location.href = `${baseURL}/api/v1/auth/google`;
   };
 
-  
+
 
   const onFinish = async (values) => {
     try {
@@ -24,9 +24,9 @@ export default function LoginPage() {
       localStorage.setItem("adminLoginId", response?.data?.user?._id);
       route("/");
     } catch (error) {
-      if(error?.data){
+      if (error?.data) {
         message.error(error?.data?.message);
-      }else{
+      } else {
         message.error("Server error Please try Another time")
       }
       // alert("Feild login, Please try again!!");

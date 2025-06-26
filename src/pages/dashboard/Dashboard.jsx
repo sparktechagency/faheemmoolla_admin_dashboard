@@ -1,6 +1,6 @@
-import { lazy, Suspense, useEffect } from "react";
-import { useAllCountAnalysisQuery } from "../../features/dashboard/dashboardApi";
+import { lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAllCountAnalysisQuery } from "../../features/dashboard/dashboardApi";
 
 const AnalysisCard = lazy(() => import("../../components/AnalysisCard"));
 const CustomerMap = lazy(() => import("../../components/dashboard/CustomerMap"));
@@ -8,13 +8,13 @@ const OrderChart = lazy(() => import("../../components/dashboard/OrderChart"));
 const PieCharts = lazy(() => import("../../components/dashboard/PieChart"));
 const Revenue = lazy(() => import("../../components/dashboard/Revenue"));
 
+import { Skeleton, Spin } from "antd";
+import down from "../../assets/icons/down.png";
 import Icon_Order from "../../assets/icons/Icon_Order.png";
 import Items_Delivered from "../../assets/icons/Items_Delivered.png";
+import OrderData from "../../assets/icons/orderData.png";
 import revenue from "../../assets/icons/revenue.png";
 import shop_order from "../../assets/icons/shop_order.png";
-import OrderData from "../../assets/icons/orderData.png";
-import down from "../../assets/icons/down.png";
-import { Skeleton, Spin } from "antd";
 
 const Dashboard = () => {
   const {
@@ -30,12 +30,9 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (status === "rejected" && isError && queryError) {
-      localStorage.removeItem("adminToken");
-      navigate("/auth/login");
-    }
-  }, [status, isError, queryError, navigate]);
+
+
+
 
   const analysisCards = [
     {

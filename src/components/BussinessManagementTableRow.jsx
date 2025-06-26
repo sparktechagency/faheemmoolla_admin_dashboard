@@ -15,6 +15,7 @@ const inputStyle = {
 };
 
 const BussinessManagementTableRow = ({ item, list }) => {
+  console.log("sdfsdfdsfsd",item)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [revenueDropdown, setRevenueDropdown] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -83,7 +84,7 @@ const BussinessManagementTableRow = ({ item, list }) => {
       <div className="py-3 text-center whitespace-normal break-words min-w-0">{list}</div>
       <div className="px-3 py-3 text-center whitespace-normal break-words min-w-0">{item?.shopName}</div>
       <div className="px-3 py-3 text-start w-full whitespace-normal break-words min-w-0">{item?.userId?.email}</div>
-      <div className="px-4 py-3 text-center whitespace-normal break-words min-w-0">{item?.location || "Dhaka"}</div>
+      <div className="px-4 py-3 text-center whitespace-normal break-words min-w-0">{item?.shopAddress ? item?.shopAddress : "N/A"}</div>
       <div className="px-4 py-3 text-center whitespace-normal break-words min-w-0">{item?.userId?.phone}</div>
       <div className="px-4 py-3 text-center whitespace-normal break-words min-w-0">{item?.totalOrders}</div>
       <div className="py-3 text-center whitespace-normal break-words min-w-0">{item.revenue}%</div>

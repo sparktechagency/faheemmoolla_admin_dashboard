@@ -28,7 +28,7 @@ const EarningTableRow = ({ item, list }) => {
   return (
     <>
       {/* Table Row */}
-      <div className="grid grid-cols-11 pr-1 my-3 text-sm bg-gray-100 rounded-lg whitespace-nowrap">
+      <div className="grid grid-cols-12 pr-1 my-3 text-sm bg-gray-100 rounded-lg whitespace-nowrap">
         <div className="py-3 text-center">{list}</div>
         <div className="px-3 py-3 text-center">{item?.orderNumber}</div>
         <div className="px-3 py-3 text-center">{item?.userId?.name}</div>
@@ -47,6 +47,7 @@ const EarningTableRow = ({ item, list }) => {
         <div className="px-4 py-3 text-center">
           {formatDate(item.createdAt)}
         </div>
+        <div className={`px-4 py-3 text-center ${item?.orderStatus === "delivered" ? "text-green-600" : "text-red-600"}`}>{item?.orderStatus}</div>
 
         <div className="flex items-center px-1 border border-green-500 rounded">
           <button
